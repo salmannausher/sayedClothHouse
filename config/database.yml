@@ -2,6 +2,6 @@
     adapter: postgresql
     encoding: utf8
     database: medit8
-    username: 
-    password: 
+    username: techverx
+    password: techverx
     host: localhost
