@@ -1,0 +1,7 @@
+  development:
+    adapter: postgresql
+    encoding: utf8
+    database: medit8
+    username: 
+    password: 
+    host: localhost
