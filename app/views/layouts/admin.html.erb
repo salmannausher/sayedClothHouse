@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	 <title>SB Admin 2 - Bootstrap Admin Theme</title>
-	  <meta charset="utf-8">
-	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <meta name="description" content="">
-	  <meta name="author" content="">
+<head>
+	<title>SB Admin 2 - Bootstrap Admin Theme</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-	  <%= javascript_include_tag :admin , "data-turbolinks-track" => true %>
-	  <%= stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track' => true %>
-	  <%#= javascript_include_tag 'select2.min' %>
-	  <%= csrf_meta_tags %>
-	</head>
-	<body>
-		<div id="wrapper">
-			<%= render :partial => '/admin/shared/sidebar' %>
-			<div id="page-wrapper">
-			<p id="notice"><%= notice %></p>
-				<%= yield %>
-			</div>
-
+	<%= javascript_include_tag :admin , "data-turbolinks-track" => true %>
+	<%= stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track' => true %>
+	<%#= javascript_include_tag 'select2.min' %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	<div id="wrapper">
+		<%= render :partial => '/admin/shared/sidebar' %>
+		<div id="page-wrapper">
+			<% unless flash.empty? %>
+			<script type="text/javascript">
+				<% flash.each do |f| %>
+				<% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+				toastr['<%= type %>']('<%= f[1] %>');
+				<% end %>
+			</script>
+			<% end %>
+			<%= yield %>
 		</div>
-		<script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
-    });
-</script>
-	</body>
+
+	</div>
+	<script>
+		$(document).ready(function() {
+			$('#dataTables-example').DataTable({
+				responsive: true
+			});
+		});
+	</script>
+</body>
 </html>
