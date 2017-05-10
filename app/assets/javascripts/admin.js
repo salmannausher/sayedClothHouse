@@ -11,4 +11,5 @@
 *= require admin/dataTables.responsive
 *= require admin/sb-admin-2
 *= require toastr
+*= require admin/canvasjs.min.js
 */
