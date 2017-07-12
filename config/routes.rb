@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'admin#index'
   devise_for :users
 	resources :admin, only: [:index]
 	namespace :admin do
