@@ -4,7 +4,8 @@ class Admin::UsersController < AdminController
   # GET /admin/users
   # GET /admin/users.json
   def index
-    @admin_users = User.all
+    @admin_users = User.with_role(:client)
+    @admin_clients = Client.all
   end
 
   # GET /admin/users/1

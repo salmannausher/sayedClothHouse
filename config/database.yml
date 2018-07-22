@@ -1,7 +1,7 @@
   development:
     adapter: postgresql
     encoding: utf8
-    database: medit8
-    username: techverx
-    password: techverx
+    database: inventory
+    username: postgres
+    password: salman
     host: localhost

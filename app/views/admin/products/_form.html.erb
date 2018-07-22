@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+       Add product
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <%= form_for [:admin, @admin_product] do |f| %>
+            <div class="col-md-6">
+
+              <div class="form-group">
+                  <%= f.select(:name, Product::PRODUCT_NAMES , {}, { :class => 'form-control' }) %>
+              </div>
+              <%=f.label :client_id%>
+              <div class="form-group">
+              <%= f.select :client_id, options_for_select(Client.all.collect { | client | [client.name, client.id] }, f.object.client.try(:id)), {}, {:class => 'form-control' } %>
+              </div>
+              <div class="form-group">
+                <%=f.label :rate%>
+                <%=f.text_field :rate ,class: 'form-control', placeholder: 'Enter Rate/meter', required: 'true'%>
+              </div>
+              <div class="form-group">
+                <%=f.label :profit_percentage%>
+                <%=f.text_field :profit_percentage ,class: 'form-control', placeholder: 'Enter Profit Percentage', required: 'true'%>
+              </div>
+              <div class="form-group">
+                <%#=f.label :sale_price%>
+                <%#=f.text_field :sale_price ,class: 'form-control', placeholder: 'Enter Address'%>
+              </div>
+
+
+              <%= f.submit 'Submit Button', class: "btn btn-default" %>
+              <button type="reset" class="btn btn-default">Reset Button</button>
+              <a  href="/admin/products" class="btn btn-default">Back</a>
+            </div>
+
+          <%end%>
+        </div>
+      </div>        
+    </div>
+  </div>    
+</div>
