@@ -2,6 +2,7 @@
 /*
 *= require jquery
 *=  require jquery_ujs
+//= require jquery_nested_form
 *= require admin_custom
 *= require admin/jquery.min
 *= require admin/bootstrap.min

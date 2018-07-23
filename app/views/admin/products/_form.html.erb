@@ -12,8 +12,9 @@
               <div class="form-group">
                   <%= f.select(:name, Product::PRODUCT_NAMES , {}, { :class => 'form-control' }) %>
               </div>
-              <%=f.label :client_id%>
               <div class="form-group">
+              <%=f.label :client_id%>
+              
               <%= f.select :client_id, options_for_select(Client.all.collect { | client | [client.name, client.id] }, f.object.client.try(:id)), {}, {:class => 'form-control' } %>
               </div>
               <div class="form-group">
