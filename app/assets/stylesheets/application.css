@@ -14,3 +14,7 @@
  *= require_self
  *= require custom
  */
+.clear40 {
+	margin-top: 40px;
+	clear: both;
+}

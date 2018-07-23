@@ -11,6 +11,7 @@ class AdminController < ApplicationController
   end
 
 	def index
+		@total_orders = Order.all.count
 		@total_clients = Client.all.count
 		@total_products = Product.all.count
 	end
