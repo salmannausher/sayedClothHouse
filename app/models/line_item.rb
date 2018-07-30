@@ -4,6 +4,12 @@ class LineItem < ApplicationRecord
 	before_create :line_total
 
 	def line_total 
-		self.total_price = meter*price_per_meter
+		self.total_price = calculate_meters*price_per_meter
 	end
+
+	def calculate_meters
+		self.meter = than * gaz_per_than
+	end
+
+	
 end

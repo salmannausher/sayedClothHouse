@@ -2,7 +2,7 @@ class Admin::ProductsController < AdminController
   # require 'barby'
   # require 'barby/barcode/EAN13'
   # require 'barby/outputter/ascii_outputter'
-  before_action :set_admin_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_admin_product, only: [:show, :edit, :update,:get_price, :destroy]
 
   # GET /admin/products
   # GET /admin/products.json
@@ -13,6 +13,12 @@ class Admin::ProductsController < AdminController
   # GET /admin/products/1
   # GET /admin/products/1.json
   def show
+  end
+
+  def get_price 
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /admin/products/new
@@ -72,6 +78,6 @@ class Admin::ProductsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_product_params
-       params.require(:product).permit(:name,:client_id, :rate, :profit_percentage, :sale_price)
+       params.require(:product).permit(:name,:vendor_id, :rate, :profit_percentage, :sale_price)
     end
 end

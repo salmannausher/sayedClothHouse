@@ -1,4 +1,57 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_admin_client_path(@admin_client) %> |
-<%= link_to 'Back', admin_clients_path %>
+
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header"><%= @admin_client.name %> Orders</h1>
+  </div>
+  
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= @admin_client.name %> Orders
+        <%#= link_to '<i class="fa fa-plus"></i> Add New client'.html_safe, new_admin_product_path, class: "btn btn-default pull-right add-btn" %>
+      </div>
+      <div class="panel-body">
+        <div class="dataTable_wrapper">
+          <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Client Name</th>
+                    <th>Shipping Charges</th>
+                    <th>Grand Total</th>
+                    <th class="text-center">Edit/Delete</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+
+              <% @admin_client.orders.each_with_index do |client_orders,index| %>
+              <% if @admin_client.orders.present? %>
+                <tr class="odd gradeX">
+                  <!-- <td><%#= index+1 %></td> -->
+                  <td><%= index+1 %></td>
+                  <td><%= client_orders.client.name %></td>
+                  <td><%= client_orders.shipping_charges %></td>
+                  <td><%= client_orders.order_total %></td>
+                  <td class="text-center">
+                      <span>
+                      <%= link_to '',""  ,class: "edit fa fa-eye icon_link with-tip no-text", title: "order detail"%>&nbsp; &nbsp;
+                      </span> 
+                  </td>
+                  
+                </tr>
+                <% else %>
+                <h1>No Orders found</h1>
+                <% end %>
+              <%end%>                                                                             
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

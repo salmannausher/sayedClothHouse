@@ -34,7 +34,7 @@
                 <tr class="odd gradeX">
                   <td><%= index+1 %></td>
                   <td><%= admin_product.name %></td>
-                  <td><%= admin_product.client.try(:name) %></td>
+                  <td><%= admin_product.vendor.try(:name) %></td>
                   <td><%= admin_product.rate %></td>
                   <td><%= admin_product.profit_percentage %></td>
                   <td><%= admin_product.product_sale_price %></td>

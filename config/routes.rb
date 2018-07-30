@@ -5,7 +5,10 @@ Rails.application.routes.draw do
 	namespace :admin do
 		resources :users
 		resources :clients
-		resources :products
+		resources :vendors
+		resources :products do
+			get :get_price, on: :collection
+		end
 		resources :orders
 	end
 

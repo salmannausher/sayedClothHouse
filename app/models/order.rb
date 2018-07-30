@@ -5,6 +5,6 @@ class Order < ApplicationRecord
 	before_create :order_total
 
 	def order_total
-		order_total = self.line_items.sum(:total_price) + shipping_charges
+		order_total = self.line_items.sum(:total_price)
 	end
 end

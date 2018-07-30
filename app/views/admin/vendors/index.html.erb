@@ -1,7 +1,7 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header">All Clients</h1>
+    <h1 class="page-header">Vendors</h1>
   </div>
   
 </div>
@@ -9,8 +9,8 @@
   <div class="col-lg-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <%= t 'admin.clients'%>
-        <%= link_to '<i class="fa fa-plus"></i> Add New client'.html_safe, new_admin_client_path, class: "btn btn-default pull-right add-btn" %>
+        <%= t 'admin.Vendors'%>
+        <%= link_to '<i class="fa fa-plus"></i> Add New Vendor'.html_safe, new_admin_client_path, class: "btn btn-default pull-right add-btn" %>
       </div>
       <div class="panel-body">
         <div class="dataTable_wrapper">
@@ -21,28 +21,26 @@
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Address</th>
-                    <th></th>
                     <th class="text-center">Edit/Delete</th>
                     
                 </tr>
             </thead>
             <tbody>
 
-              <% @admin_clients.each_with_index do |admin_client,index| %>
+              <% @admin_vendors.each_with_index do |admin_vendor,index| %>
 
                 <tr class="odd gradeX">
                   <td><%= index+1 %></td>
-                  <td><%= admin_client.name %></td>
-                  <td><%= admin_client.phone %></td>
-                  <td><%= admin_client.address %></td>
-                  <td><%= link_to "View Orders", admin_client_path(admin_client) %></td>
+                  <td><%= admin_vendor.name %></td>
+                  <td><%= admin_vendor.phone %></td>
+                  <td><%= admin_vendor.address %></td>
                   <td class="text-center">
                       <span>
-                      <%= link_to '', edit_admin_client_path(admin_client) ,class: "edit fa fa-edit icon_link with-tip no-text", title: "edit"%>&nbsp; &nbsp;
+                      <%= link_to '', edit_admin_vendor_path(admin_vendor) ,class: "edit fa fa-edit icon_link with-tip no-text", title: "edit"%>&nbsp; &nbsp;
                       </span>
                       <span>
                      
-                      <%= link_to '',  admin_client_path(admin_client), method: :delete, data: { confirm: 'Are you sure?' } ,class: "delete fa fa-trash icon_link with-tip no-text" , title: "delete" %>
+                      <%= link_to '',  admin_vendor_path(admin_vendor), method: :delete, data: { confirm: 'Are you sure?' } ,class: "delete fa fa-trash icon_link with-tip no-text" , title: "delete" %>
                           
                       </span>
                   </td>
