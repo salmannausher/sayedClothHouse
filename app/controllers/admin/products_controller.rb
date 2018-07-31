@@ -1,7 +1,8 @@
 class Admin::ProductsController < AdminController
-  # require 'barby'
-  # require 'barby/barcode/EAN13'
-  # require 'barby/outputter/ascii_outputter'
+  require 'barby'
+  require 'barby/barcode/code_128'
+  require 'barby/outputter/ascii_outputter'
+  require 'barby/outputter/html_outputter'
   before_action :set_admin_product, only: [:show, :edit, :update,:get_price, :destroy]
 
   # GET /admin/products
@@ -23,6 +24,7 @@ class Admin::ProductsController < AdminController
 
   # GET /admin/products/new
   def new
+    # @barcode = Barby::EAN13.new('012345678912')
     @admin_product = Product.new
   end
 
@@ -34,7 +36,7 @@ class Admin::ProductsController < AdminController
   # POST /admin/products.json
   def create
     @admin_product = Product.new(admin_product_params)
-    # @barcode = Barby::EAN13.new('012345678912')
+    
     respond_to do |format|
       if @admin_product.save
         format.html { redirect_to admin_products_url, notice: 'Product was successfully created.' }

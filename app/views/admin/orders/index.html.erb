@@ -19,8 +19,9 @@
                 <tr>
                     <th>ID</th>
                     <th>Client Name</th>
-                    <th>Shipping Charges</th>
+                    <th>Cargo Charges</th>
                     <th>Grand Total</th>
+                    <th>Order Date</th>
                     <th class="text-center">Edit/Delete</th>
                     
                 </tr>
@@ -31,8 +32,9 @@
                 <tr class="odd gradeX">
                   <td><%= index+1 %></td>
                   <td><%= admin_order.client.name %></td>
-                  <td><%= admin_order.shipping_charges %></td>
-                  <td><%= admin_order.order_total %></td>
+                  <td><%= admin_order.shipping_charges.to_i %></td>
+                  <td><%= admin_order.grand_total %></td>
+                  <td><%= admin_order.created_at.strftime("%B-%d-%Y") %></td>
                   <td class="text-center">
                       <span>
                       <%= link_to '', admin_order_path(admin_order) ,class: "edit fa fa-eye icon_link with-tip no-text", title: "order detail"%>&nbsp; &nbsp;

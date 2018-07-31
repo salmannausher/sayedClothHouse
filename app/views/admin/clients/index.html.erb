@@ -35,7 +35,11 @@
                   <td><%= admin_client.name %></td>
                   <td><%= admin_client.phone %></td>
                   <td><%= admin_client.address %></td>
-                  <td><%= link_to "View Orders", admin_client_path(admin_client) %></td>
+                  <% if admin_client.orders.present? %>
+                   <td><%= link_to "View Orders", admin_client_path(admin_client) %></td>
+                  <% else %>
+                    <td> No orders Yet </td>
+                  <% end %>
                   <td class="text-center">
                       <span>
                       <%= link_to '', edit_admin_client_path(admin_client) ,class: "edit fa fa-edit icon_link with-tip no-text", title: "edit"%>&nbsp; &nbsp;

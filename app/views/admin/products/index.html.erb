@@ -23,6 +23,7 @@
                     <th>Product Rate/meter</th>
                     <th>Profit Percentage</th>
                     <th>Sale Price</th>
+                    <th>Barcode</th>
                     <th class="text-center">Edit/Delete</th>
                     
                 </tr>
@@ -37,7 +38,8 @@
                   <td><%= admin_product.vendor.try(:name) %></td>
                   <td><%= admin_product.rate %></td>
                   <td><%= admin_product.profit_percentage %></td>
-                  <td><%= admin_product.product_sale_price %></td>
+                  <td><%= admin_product.sale_price %></td>
+                  <td><%= raw admin_product.genrate_barcode.to_html %></td>
                   <td class="text-center">
                       <span>
                       <%= link_to '', edit_admin_product_path(admin_product) ,class: "edit fa fa-edit icon_link with-tip no-text", title: "edit"%>&nbsp; &nbsp;
@@ -57,3 +59,10 @@
     </div>
   </div>
 </div>
+
+<style type="text/css">
+  table.barby-barcode { border-spacing: 0; }
+  tr.barby-row {}
+  td.barby-cell { width: 3px; height: 50px; }
+  td.barby-cell.on { background: #000; }
+</style>

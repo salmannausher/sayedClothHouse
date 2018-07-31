@@ -1,5 +1,27 @@
 <p id="notice"><%= notice %></p>
 
+<div class="row" style="padding-top: 20px;">
+     <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-user fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge"><%= @admin_client.orders.count %></div>
+                        <div>Total Clients</div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <span class="pull-left">View Details</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="row">
   <div class="col-lg-12">
@@ -21,8 +43,9 @@
                 <tr>
                     <th>ID</th>
                     <th>Client Name</th>
-                    <th>Shipping Charges</th>
+                    <th>Cargo Charges</th>
                     <th>Grand Total</th>
+                    <th>Date</th>
                     <th class="text-center">Edit/Delete</th>
                     
                 </tr>
@@ -36,7 +59,9 @@
                   <td><%= index+1 %></td>
                   <td><%= client_orders.client.name %></td>
                   <td><%= client_orders.shipping_charges %></td>
-                  <td><%= client_orders.order_total %></td>
+                  <td><%= client_orders.grand_total %></td>
+                  <td><%= client_orders.created_at.strftime("%B-%d-%Y") %></td>
+
                   <td class="text-center">
                       <span>
                       <%= link_to '',""  ,class: "edit fa fa-eye icon_link with-tip no-text", title: "order detail"%>&nbsp; &nbsp;
