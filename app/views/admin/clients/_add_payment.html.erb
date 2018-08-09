@@ -1,0 +1,36 @@
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="paymentModalLabel">Add payment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<%= form_for [:admin, Payment.new]  do |f|  %>
+			<div class="form-group">
+	            <%=f.label :amount%>
+	            <%=f.text_field :amount ,class: 'form-control', placeholder: 'Enter amount to returned', required: 'true'%>
+	         </div>
+			
+	         <div class="form-group">
+	            <%=f.label :description%>
+	            <%=f.text_field :description ,class: 'form-control', placeholder: 'Debit/Ccredit', required: 'true'%>
+	         </div>
+	          <%= f.hidden_field :client_id %>
+	          <%= f.hidden_field :payment_type, value: "Debit" %>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+		<% end %>
+    </div>
+  </div>
+</div>
+
+

@@ -1,23 +1,39 @@
 <p id="notice"><%= notice %></p>
 
 <div class="row" style="padding-top: 20px;">
-     <div class="col-lg-3 col-md-6">
+     <div class="col-lg-4 col-md-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-3">
-                        <i class="fa fa-user fa-5x"></i>
+                        <i class="fa fa-user fa-4x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
                         <div class="huge"><%= @admin_client.orders.count %></div>
-                        <div>Total Clients</div>
+                        <div>Orders By <%= @admin_client.name %></div>
                     </div>
                 </div>
             </div>
-            <div class="panel-footer">
+           <!--  <div class="panel-footer">
                 <span class="pull-left">View Details</span>
                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                 <div class="clearfix"></div>
+            </div> -->
+        </div>
+    </div>
+
+     <div class="col-lg-4 col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <!-- <div class="col-xs-3">
+                        <i class="fa fa-money fa-5x"></i>
+                    </div> -->
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">Rs/<%= @admin_client.payments.sum(:amount) %></div>
+                        <div>Credit Amount</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -45,26 +61,32 @@
                     <th>Client Name</th>
                     <th>Cargo Charges</th>
                     <th>Grand Total</th>
+                    <th>Order Type</th>
                     <th>Date</th>
-                    <th class="text-center">Edit/Delete</th>
+                    <th class="text-center">Actions</th>
                     
                 </tr>
             </thead>
             <tbody>
 
-              <% @admin_client.orders.each_with_index do |client_orders,index| %>
+              <% @admin_client.orders.each_with_index do |client_order,index| %>
               <% if @admin_client.orders.present? %>
                 <tr class="odd gradeX">
                   <!-- <td><%#= index+1 %></td> -->
                   <td><%= index+1 %></td>
-                  <td><%= client_orders.client.name %></td>
-                  <td><%= client_orders.shipping_charges %></td>
-                  <td><%= client_orders.grand_total %></td>
-                  <td><%= client_orders.created_at.strftime("%B-%d-%Y") %></td>
+                  <td><%= client_order.client.name %></td>
+                  <td><%= client_order.shipping_charges.to_i %></td>
+                  <td><%= client_order.grand_total %></td>
+                  <td><%= client_order.order_type %></td>
+                  <td><%= client_order.created_at.strftime("%B-%d-%Y") %></td>
 
                   <td class="text-center">
                       <span>
-                      <%= link_to '',""  ,class: "edit fa fa-eye icon_link with-tip no-text", title: "order detail"%>&nbsp; &nbsp;
+                       <% if client_order.order_type == 'return_invoice' %>
+                        <%= link_to '', admin_return_order_path(client_order) ,class: "edit fa fa-eye icon_link with-tip no-text", title: "order detail"%>&nbsp; &nbsp;
+                      <% else %>
+                        <%= link_to '',admin_order_path(client_order)  ,class: "edit fa fa-eye icon_link with-tip no-text", title: "order detail"%>&nbsp; &nbsp;
+                        <% end %>
                       </span> 
                   </td>
                   

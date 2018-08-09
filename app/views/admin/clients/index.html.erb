@@ -22,7 +22,7 @@
                     <th>Phone</th>
                     <th>Address</th>
                     <th></th>
-                    <th class="text-center">Edit/Delete</th>
+                    <th class="text-center">Actions</th>
                     
                 </tr>
             </thead>
@@ -41,6 +41,14 @@
                     <td> No orders Yet </td>
                   <% end %>
                   <td class="text-center">
+                  <% if admin_client.orders.present?%>
+                      <span>
+                      <%= link_to " ", "#paymentModal", :class => "fa fa-plus icon_link with-tip no-texty", "data-toggle" => "modal", "data-id" => admin_client.id, title:"add Pyament" %>&nbsp; &nbsp;
+                      </span>
+                       <span>
+                      <%= link_to '', admin_payment_path(admin_client) ,class: "edit fa fa-eye icon_link with-tip no-text", title: "order detail"%>&nbsp; &nbsp;
+                      </span>
+                  <% end %>
                       <span>
                       <%= link_to '', edit_admin_client_path(admin_client) ,class: "edit fa fa-edit icon_link with-tip no-text", title: "edit"%>&nbsp; &nbsp;
                       </span>
@@ -59,3 +67,12 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+ $(document).ready(function(){
+  $('#paymentModal').on('show.bs.modal', function(e){ 
+    clientId = $(e.relatedTarget).data('id');
+    $(e.currentTarget).find('input[name="payment[client_id]"]').val(clientId);
+  });
+})
+</script>
+<%= render "add_payment" %>

@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
-	before_action :authenticate_user!
-	before_filter :is_admin?
+	# before_action :authenticate_user!
+	# before_filter :is_admin?
 		layout 'admin'
 	def is_admin?
   	if current_user.admin?

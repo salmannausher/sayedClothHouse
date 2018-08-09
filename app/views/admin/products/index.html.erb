@@ -19,12 +19,13 @@
                 <tr>
                     <th>ID</th>
                     <th>Product Name</th>
-                    <th>Client Name</th>
+                    <th>Vendor Name</th>
                     <th>Product Rate/meter</th>
                     <th>Profit Percentage</th>
+                    <th>Meters</th>
                     <th>Sale Price</th>
                     <th>Barcode</th>
-                    <th class="text-center">Edit/Delete</th>
+                    <th class="text-center">Actions</th>
                     
                 </tr>
             </thead>
@@ -38,9 +39,13 @@
                   <td><%= admin_product.vendor.try(:name) %></td>
                   <td><%= admin_product.rate %></td>
                   <td><%= admin_product.profit_percentage %></td>
+                  <td><%= admin_product.stocks.sum(:meter) %></td>
                   <td><%= admin_product.sale_price %></td>
                   <td><%= raw admin_product.genrate_barcode.to_html %></td>
                   <td class="text-center">
+                      <span>
+                      <%= link_to '', admin_stock_path(admin_product) ,class: "edit fa fa-eye icon_link with-tip no-text", title: "Stock detail"%>&nbsp; &nbsp;
+                      </span> 
                       <span>
                       <%= link_to '', edit_admin_product_path(admin_product) ,class: "edit fa fa-edit icon_link with-tip no-text", title: "edit"%>&nbsp; &nbsp;
                       </span>
@@ -48,6 +53,9 @@
                      
                       <%= link_to '',  admin_product_path(admin_product), method: :delete, data: { confirm: 'Are you sure?' } ,class: "delete fa fa-trash icon_link with-tip no-text" , title: "delete" %>
                           
+                      </span>&nbsp; &nbsp;
+                      <span>
+                      <%= link_to " ", "#exampleModal", :class => "fa fa-plus icon_link with-tip no-texty", "data-toggle" => "modal", "data-id" => admin_product.id, title: "Add Stock" %>&nbsp; &nbsp;
                       </span>
                   </td>
                 </tr>
@@ -60,6 +68,15 @@
   </div>
 </div>
 
+<script type="text/javascript">
+ $(document).ready(function(){
+  $('#exampleModal').on('show.bs.modal', function(e){ 
+    productId = $(e.relatedTarget).data('id');
+    $(e.currentTarget).find('input[name="stock[product_id]"]').val(productId);
+  });
+})
+</script>
+<%= render 'add_stock'%>
 <style type="text/css">
   table.barby-barcode { border-spacing: 0; }
   tr.barby-row {}

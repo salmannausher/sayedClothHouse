@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180731103940) do
+ActiveRecord::Schema.define(version: 20180809170217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(version: 20180731103940) do
     t.integer  "shipping_charges"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.integer  "gazana_num"
+    t.string   "order_type"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "client_id"
+    t.integer  "order_id"
+    t.integer  "amount"
+    t.string   "payment_type"
+    t.string   "description"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -56,6 +68,9 @@ ActiveRecord::Schema.define(version: 20180731103940) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "vendor_id"
+    t.integer  "than"
+    t.integer  "gazan_per_than"
+    t.integer  "meter"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -66,6 +81,16 @@ ActiveRecord::Schema.define(version: 20180731103940) do
     t.datetime "updated_at"
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
     t.index ["name"], name: "index_roles_on_name", using: :btree
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "than"
+    t.integer  "gazana_per_than"
+    t.integer  "meter"
+    t.integer  "order_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "users", force: :cascade do |t|

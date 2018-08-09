@@ -69,6 +69,6 @@ class Admin::OrdersController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_order_params
-      params.require(:order).permit(:client_id,:line_item_id,:shipping_charges, line_items_attributes: [:id, :quantity, :size, :than, :item_name, :gaz_per_than, :meter, :price_per_meter, :total_price, :product_id])
+      params.require(:order).permit(:client_id,:line_item_id,:order_type,:gazana_num,:shipping_charges, line_items_attributes: [:id, :quantity, :size, :than, :item_name, :gaz_per_than, :meter, :price_per_meter, :total_price, :product_id])
     end
 end

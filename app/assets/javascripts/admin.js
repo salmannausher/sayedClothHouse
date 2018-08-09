@@ -13,5 +13,10 @@
 *= require admin/sb-admin-2
 *= require toastr
 *= require admin/canvasjs.min
-*= require admin/select2.min
+*= require select2
 */
+$( document ).ready(function() {
+    $( "select" ).select2({
+    theme: "bootstrap"
+});
+});

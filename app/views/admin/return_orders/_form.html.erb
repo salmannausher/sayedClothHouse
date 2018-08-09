@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+       Create Order
+      </div>
+      <div class="panel-body">
+        <%= nested_form_for [:admin, @admin_order], :url => @admin_order.new_record? ? admin_return_orders_path : admin_return_order_path do |f| %>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <%= f.label :client_id%>
+              <%= f.select :client_id, options_for_select(Client.all.collect { | client | [client.name, client.id] }, f.object.client.try(:id)), {}, {:class => 'form-control' } %>
+            </div>
+               <div class="col-md-6 mb-3">
+              <label>Gazana Number</label>
+                  <%= f.number_field :gazana_num ,class: 'form-control', placeholder: 'Enter Gazana Number'%>
+              </div>
+            </div>
+            <%= f.fields_for :stocks do |stock| %>
+              <div class="form-row">
+                <div class="col-md-12 mb-6" style="margin-top: 20px;">
+                  <%=stock.label :product_id%>
+                  <%= stock.select :product_id, Product.all.collect { | product | [product.name, product.id]} ,{include_blank: '-choose product-' } , {:class => 'form-control' , id: "select-product_#{stock.index}", onChange: "get_price('#{stock.index}')"} %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4" style="margin-top: 20px;">
+                  <%=stock.label :than%>
+                  <%=stock.text_field :than ,class: 'form-control', placeholder: 'Enter Number Thans', required: 'true'%>
+                </div>
+                <div class="col-md-6 mb-4" style="margin-top: 20px;">
+                  <%=stock.label :gazana_per_than%>
+                  <%=stock.text_field :gazana_per_than ,class: 'form-control', placeholder: 'Enter Gaz Per Than', required: 'true'%>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-12 text-center" style="margin-top: 20px; clear: both;">
+                  <%= stock.link_to_remove "Remove this product", class: "btn btn-danger" %>
+                </div>
+              </div>
+              
+            <% end %>
+            <hr>
+            <%= f.hidden_field :order_type, value: "return_invoice" %>
+           <p><%= f.link_to_add "Add Another Product", :stocks, class: "btn btn-primary"  %></p>
+           <%= f.submit 'Submit Button', class: "btn btn-default" %>
+            <button type="reset" class="btn btn-default">Reset Button</button>
+            <a  href="/admin/products" class="btn btn-default">Back</a>
+        <% end %>
+      </div>        
+    </div>
+  </div>    
+</div>
+<script type="text/javascript">
+  function get_price(index){
+    productId = $('#select-product_'+index).val()
+    $.ajax({
+      url: '/admin/products/get_price',
+      data: { id: productId, index: index },
+      method: "GET"
+      
+    })
+  }
+
+  
+
+</script>

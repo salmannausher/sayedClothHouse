@@ -23,6 +23,7 @@ gem 'devise'
 gem 'rolify'
 gem 'toastr_rails'
 gem 'barby'
+gem "select2-rails"
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes

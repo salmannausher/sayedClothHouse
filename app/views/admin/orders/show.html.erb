@@ -3,7 +3,16 @@
   <div class="col-lg-12 header-print">
     <h1 class="page-header">Order #<%= @admin_order.id %></h1>
   </div>
-  
+</div>
+<div class="row">
+  <div class="col-lg-12 sub_header">
+    <ul style="list-style: none;">
+      <li>Party Name : <%= @admin_order.client.name %></li>
+      <li>Gazana #<%= @admin_order.gazana_num %></li>
+      <li>Order Date : <%= @admin_order.created_at %></li>
+      <li>Date : <%= Date.today %></li>
+    </ul>
+  </div>
 </div>
 <div class="row">
   <div class="col-lg-12">
@@ -29,10 +38,10 @@
             </thead>
             <tbody>
 
-              <% @admin_order.line_items.each_with_index do |line_item| %>
+              <% @admin_order.line_items.each_with_index do |line_item,index| %>
                 <tr class="odd gradeX">
-                  <!-- <td><%#= index+1 %></td> -->
-                  <td><%= line_item.id %></td>
+                  <td><%= index+1 %></td> 
+                  <!-- <td><%#= line_item.id %></td> -->
                   <td><%= line_item.than %></td>
                   <td><%= line_item.product.name %></td>
                   <td><%= line_item.gaz_per_than %></td>
@@ -66,7 +75,7 @@
     </span>
     <br>
     <span style="float: right;">
-     <strong>Cargo Charges:</strong> Rs. <%= @admin_order.grand_total %>
+     <strong>Grand Total:</strong> Rs. <%= @admin_order.grand_total %>
     </span>
   </div>
 </div>
@@ -74,6 +83,9 @@
   @media print {
   body * {
     visibility: hidden;
+  }
+  .sub_header * {
+    visibility: visible;
   }
   .grand_total_print * {
     visibility: visible;

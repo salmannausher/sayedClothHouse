@@ -26,10 +26,14 @@ class Admin::ProductsController < AdminController
   def new
     # @barcode = Barby::EAN13.new('012345678912')
     @admin_product = Product.new
+    # 1.times { @admin_product.stocks.build }
   end
 
   # GET /admin/products/1/edit
   def edit
+    # unless @admin_product.stocks.present?
+    #   1.times { @admin_product.stocks.build }
+    # end
   end
 
   # POST /admin/products
@@ -80,6 +84,6 @@ class Admin::ProductsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_product_params
-       params.require(:product).permit(:name,:vendor_id, :rate, :profit_percentage, :sale_price)
+       params.require(:product).permit(:name,:vendor_id,:than,:gazan_per_than, :rate, :profit_percentage, :sale_price,stocks_attributes: [:than,:gazana_per_than,:meter,:product_id])
     end
 end

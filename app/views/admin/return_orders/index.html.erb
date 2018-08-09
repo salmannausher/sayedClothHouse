@@ -1,7 +1,7 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header">All Orders</h1>
+    <h1 class="page-header">All Return invoices</h1>
   </div>
   
 </div>
@@ -9,8 +9,8 @@
   <div class="col-lg-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        Orders
-        <%= link_to '<i class="fa fa-plus"></i> Create Order'.html_safe, new_admin_order_path, class: "btn btn-default pull-right add-btn" %>
+       Return invoices
+        
       </div>
       <div class="panel-body">
         <div class="dataTable_wrapper">
@@ -19,34 +19,25 @@
                 <tr>
                     <th>ID</th>
                     <th>Client Name</th>
-                    <th>Cargo Charges</th>
-                    <th>Grand Total</th>
-                    <th>Order Date</th>
-                    <th>Order Type</th>
+                    <th>Product</th>
+                    <th>Amount</th>
+                    <th>Returned Date</th>
                     <th class="text-center">Actions</th>
                     
                 </tr>
             </thead>
             <tbody>
 
-              <% @admin_orders.each_with_index do |admin_order,index| %>
+              <% @return.each_with_index do |admin_order,index| %>
                 <tr class="odd gradeX">
                   <td><%= index+1 %></td>
                   <td><%= admin_order.client.name %></td>
-                  <td><%= admin_order.shipping_charges.to_i %></td>
+                  <td><%= admin_order.stocks.first.product.name %></td>
                   <td><%= admin_order.grand_total %></td>
-                  <td><%= admin_order.order_type %></td>
                   <td><%= admin_order.created_at.strftime("%B-%d-%Y") %></td>
                   <td class="text-center">
                       <span>
-                      <% if admin_order.order_type == 'return_invoice' %>
-                        <%= link_to '', admin_return_order_path(admin_order) ,class: "edit fa fa-eye icon_link with-tip no-text", title: "order detail"%>&nbsp; &nbsp;
-                      <% else %>
-                        <%= link_to '', admin_order_path(admin_order) ,class: "edit fa fa-eye icon_link with-tip no-text", title: "order detail"%>&nbsp; &nbsp;
-                      <% end %>
-                      </span> 
-                      <span>
-                      <%= link_to '', edit_admin_order_path(admin_order) ,class: "edit fa fa-edit icon_link with-tip no-text", title: "edit"%>&nbsp; &nbsp;
+                      <%= link_to '', edit_admin_return_order_path(admin_order) ,class: "edit fa fa-edit icon_link with-tip no-text", title: "edit"%>&nbsp; &nbsp;
                       </span>
                       
                       <span>

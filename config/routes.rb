@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 		resources :users
 		resources :clients
 		resources :vendors
+		resources :stocks
+		resources :payments
+		resources :return_orders
 		resources :products do
 			get :get_price, on: :collection
 		end

@@ -17,13 +17,23 @@
               
               <%= f.select :vendor_id, options_for_select(Vendor.all.collect { | vendor | [vendor.name, vendor.id] }, f.object.vendor.try(:id)), {}, {:class => 'form-control' } %>
               </div>
+              <%#= f.fields_for :stocks do |stock_item| %>
+              <!--   <div class="form-group">
+                  <%#=stock_item.label :than%>
+                  <%#=stock_item.text_field :than ,class: 'form-control', placeholder: 'Enter Than', required: 'true'%>
+                </div>
+                <div class="form-group">
+                  <%#=stock_item.label :gazan_per_than%>
+                  <%#=stock_item.text_field :gazana_per_than ,class: 'form-control', placeholder: 'Enter gazana per than', required: 'true'%>
+                </div> -->
+              <%# end %>
               <div class="form-group">
                 <%=f.label :rate%>
                 <%=f.text_field :rate ,class: 'form-control', placeholder: 'Enter Rate/meter', required: 'true'%>
               </div>
               <div class="form-group">
                 <%=f.label :profit_percentage%>
-                <%=f.text_field :profit_percentage ,class: 'form-control', placeholder: 'Enter Profit Percentage', required: 'true'%>
+                <%=f.number_field :profit_percentage ,class: 'form-control', placeholder: 'Enter Profit Percentage', min: 0%>
               </div>
               <div class="form-group">
                 <%#=f.label :sale_price%>
