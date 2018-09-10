@@ -1,11 +1,11 @@
 class Admin::UsersController < AdminController
   before_action :find_user, only: [:show, :edit, :update, :destroy]
-
+authorize_resource
   # GET /admin/users
   # GET /admin/users.json
   def index
-    @admin_users = User.with_role(:client)
-    @admin_clients = Client.all
+    # byebug
+    @admin_users = User.all
   end
 
   # GET /admin/users/1
@@ -70,6 +70,6 @@ class Admin::UsersController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_user_params
-       params.require(:user).permit(:email,:password)
+       params.require(:user).permit(:email,:password, :role_ids)
     end
 end

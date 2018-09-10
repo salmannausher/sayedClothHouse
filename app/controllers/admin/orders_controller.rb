@@ -1,6 +1,6 @@
 class Admin::OrdersController < AdminController
+  authorize_resource
   before_action :set_admin_order, only: [:show, :edit, :update, :destroy]
-
   # GET /admin/orders
   # GET /admin/orders.json
   def index

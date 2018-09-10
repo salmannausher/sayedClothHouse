@@ -1,4 +1,5 @@
 class Admin::ClientsController < AdminController
+  authorize_resource
   before_action :set_admin_client, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/clients

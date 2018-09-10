@@ -46,7 +46,7 @@
                       <%= link_to " ", "#paymentModal", :class => "fa fa-plus icon_link with-tip no-texty", "data-toggle" => "modal", "data-id" => admin_client.id, title:"add Pyament" %>&nbsp; &nbsp;
                       </span>
                        <span>
-                      <%= link_to '', admin_payment_path(admin_client) ,class: "edit fa fa-eye icon_link with-tip no-text", title: "order detail"%>&nbsp; &nbsp;
+                      <%= link_to '', admin_payments_path(id: "#{admin_client.id}") ,class: "edit fa fa-eye icon_link with-tip no-text", title: "order detail"%>&nbsp; &nbsp;
                       </span>
                   <% end %>
                       <span>

@@ -3,7 +3,7 @@ class Admin::StocksController < AdminController
 
 	def create
 		@admin_stock = Stock.new(stock_params)
-		@admin_stock.meter = stock_params[:than].to_i  * stock_params[:gazana_per_than].to_i
+		@admin_stock.meter = stock_params[:than].to_f  * stock_params[:gazana_per_than].to_f
 		@admin_stock.save
 		redirect_to admin_products_path
 	end
@@ -11,6 +11,14 @@ class Admin::StocksController < AdminController
 		admin_product = Product.find(params[:id])
 		@admin_stocks = admin_product.stocks
 	end
+	def destroy
+		@admin_stock = Stock.find(params[:id])
+	    @admin_stock.destroy
+	    respond_to do |format|
+	      format.html { redirect_to admin_products_path, notice: 'Stock is successfully destroyed.' }
+	      format.json { head :no_content }
+    end
+  end
 private
 	 def set_admin_stock
       @admin_stock = Stock.find(params[:id])

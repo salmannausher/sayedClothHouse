@@ -1,12 +1,13 @@
 class Admin::ReturnOrdersController < AdminController
   before_action :set_admin_order, only: [:edit, :update,:show]
+  authorize_resource :class => :return_order
   def index
     @return = Order.where(order_type: "return_invoice")
   end
 
   def new
     @admin_order = Order.new
-    1.times { @admin_order.stocks.build }
+    1.times { @admin_order.line_items.build }
   end
   def show
     
@@ -15,6 +16,7 @@ class Admin::ReturnOrdersController < AdminController
   end
 
   def create
+    byebug
     @admin_order =  Order.new(return_order_params)
       respond_to do |format|
       if @admin_order.save
@@ -44,7 +46,7 @@ class Admin::ReturnOrdersController < AdminController
     end
 
   def return_order_params
-     params.require(:order).permit(:client_id,:shipping_charges,:order_type, stocks_attributes: [:id, :product_id ,:gazana_per_than,:than])
+     params.require(:order).permit(:client_id,:shipping_charges,:order_type, line_items_attributes: [:id, :quantity, :size, :than, :item_name, :gaz_per_than, :meter, :price_per_meter, :total_price, :product_id])
   end
 
 end

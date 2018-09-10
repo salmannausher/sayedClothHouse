@@ -1,4 +1,5 @@
 class Admin::ProductsController < AdminController
+  authorize_resource
   require 'barby'
   require 'barby/barcode/code_128'
   require 'barby/outputter/ascii_outputter'

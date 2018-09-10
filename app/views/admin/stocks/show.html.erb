@@ -41,6 +41,7 @@
                     <th>Gazana per Than</th>
                     <th>Meters</th>
                     <th>Date</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,8 +52,10 @@
                   <td><%= index+1 %></td>
                  	<td><%= admin_stock.than  %></td>
                  	<td><%= admin_stock.gazana_per_than %></td>
-                 	<td><%= admin_stock.meter %></td>
+                 	<td><%= admin_stock.meter.to_f %></td>
                  	<td><%= admin_stock.created_at.strftime("%B-%d-%Y") %></td>
+                  <td><%= link_to '',  admin_stock_path(admin_stock), method: :delete, data: { confirm: 'Are you sure?' } ,class: "delete fa fa-trash icon_link with-tip no-text" , title: "delete" %></td>
+                </tr>
                 </tr>
               <%end%>                                                                             
             </tbody>

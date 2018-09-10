@@ -13,12 +13,16 @@
                 <%=f.label :email%>
                 <%=f.email_field :email ,class: 'form-control', placeholder: 'Enter Email', required: 'true'%>
               </div>
-              <%if params[:action] == 'new'%>
+              <%if params[:action] == 'new' || params[:action] == 'edit'%>
               <div class="form-group">
                 <%=f.label :password%>
                 <%=f.text_field :password ,class: 'form-control', placeholder: 'Eneter password', required: 'true', :minlength=> 6%>
               </div>
-              <%end%>
+              <div class="form-group">
+                <%=f.label :role_ids%>
+                <%= f.select :role_ids, options_for_select(Role.all.collect { | client | [client.name, client.id] }, f.object.try(:role_ids)), {}, {:class => 'form-control' } %>
+              </div>
+             <%end%>
 
               <%= f.submit 'Submit Button', class: "btn btn-default" %>
               <button type="reset" class="btn btn-default">Reset Button</button>

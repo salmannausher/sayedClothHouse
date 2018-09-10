@@ -7,28 +7,29 @@
       <div class="panel-body">
         <%= nested_form_for [:admin, @admin_order] do |f| %>
           <div class="form-row">
-            <div class="col-md-4 mb-3">
+            <div class="col-md-6 mb-6">
               <%= f.label :client_id%>
               <%= f.select :client_id, options_for_select(Client.all.collect { | client | [client.name, client.id] }, f.object.client.try(:id)), {}, {:class => 'form-control' } %>
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-6 mb-6">
               <label>Cargo Charges</label>
                   <%= f.number_field :shipping_charges ,class: 'form-control', placeholder: 'Enter Shipping Charges If Any', min: 0%>
               </div>
-               <div class="col-md-4 mb-3">
-              <label>Gazana Number</label>
-                  <%= f.number_field :gazana_num ,class: 'form-control', placeholder: 'Enter Gazana Number'%>
+              <div class="col-md-6 mb-6" style="margin-top: 20px;">
+                <label>Gazana Number</label>
+                <%= f.number_field :gazana_num ,class: 'form-control', placeholder: 'Enter Gazana Number'%>
+              </div>
+              <div class="col-md-6 mb-6" style="margin-top: 20px;">
+                <label>Discount</label>
+                <%= f.number_field :discount ,class: 'form-control', placeholder: 'Enter Discount '%>
               </div>
             </div>
             <%= f.fields_for :line_items do |line_item| %>
               <div class="form-row">
-              
-
-              <div class="col-md-12 mb-12" style="margin-top: 20px;">
-                <%=line_item.label :product_id%>
-                <%= line_item.select :product_id, Product.all.collect { | product | [product.name, product.id]} ,{:disabled => Product.out_of_stock ,include_blank: '-choose product-' } , {:class => 'form-control' , id: "select-product_#{line_item.index}", onChange: "get_price('#{line_item.index}')"} %>
-                <%#= line_item.select :product_id, options_for_select(Product.all.collect { | product | [product.name, product.id] }, { line_item.object.product.try(:id),:disabled => Product.out_of_stock }), {include_blank: '-choose product-' }, {:class => 'form-control' , id: "select-product_#{line_item.index}", onChange: "get_price('#{line_item.index}')" } %>
-              </div>
+                <div class="col-md-12 mb-12" style="margin-top: 20px;">
+                  <%=line_item.label :product_id%>
+                  <%= line_item.select :product_id, Product.all.collect { | product | [product.name, product.id]} ,{:disabled => Product.out_of_stock ,include_blank: '-choose product-' } , {:class => 'form-control' , id: "select-product_#{line_item.index}", onChange: "get_price('#{line_item.index}')"} %>
+                </div>
               </div>
               <div class="form-row">
                 <div class="col-md-4 mb-4" style="margin-top: 20px;">
@@ -74,7 +75,4 @@
       
     })
   }
-
-  
-
 </script>

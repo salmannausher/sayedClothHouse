@@ -5,10 +5,23 @@ class Admin::PaymentsController < AdminController
 		@admin_payment.save
 		redirect_to admin_clients_path
 	end
-	def show
+	def index
 		@admin_client = Client.find(params[:id])
+		@q = Payment.where(client_id: params[:id]).ransack(params[:q])
+		@payments = @q.result
+	end
+	def show
+		@admin_payment = Payment.find(params[:id])
 		# @admin_payments = admin_client.payments
 	end
+	def destroy
+	@admin_payment = Payment.find(params[:id])
+    @admin_payment.destroy
+    respond_to do |format|
+      format.html { redirect_to admin_clients_url, notice: 'Payment is successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
 private
 
 	 def payment_params

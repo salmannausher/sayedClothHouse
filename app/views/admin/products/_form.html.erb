@@ -10,7 +10,8 @@
             <div class="col-md-6">
 
               <div class="form-group">
-                  <%= f.select(:name, Product::PRODUCT_NAMES , {}, { :class => 'form-control' }) %>
+                <%=f.label :name%>
+                <%=f.text_field :name ,class: 'form-control', placeholder: 'Product Name', required: 'true'%>
               </div>
               <div class="form-group">
               <%=f.label :vendor_id%>

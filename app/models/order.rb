@@ -10,12 +10,13 @@ class Order < ApplicationRecord
   
 
   def order_total
-    if self.line_items.present?
+    # if self.line_items.present?
       order_total = self.line_items.sum(:total_price) + self.shipping_charges.to_i
-    else
-      last_stock = self.stocks.last
-      order_total = last_stock.product.sale_price*last_stock.meter
-    end
+      discount_total = order_total - order_total * self.discount/100 if self.discount.present?
+    # else
+    #   last_stock = self.stocks.last
+    #   order_total = last_stock.product.sale_price*last_stock.meter
+    # end
     self.update_column(:grand_total,order_total )
   end
 

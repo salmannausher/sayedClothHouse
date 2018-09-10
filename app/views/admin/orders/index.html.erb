@@ -19,7 +19,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Client Name</th>
-                    <th>Cargo Charges</th>
+                    <!-- <th>Cargo Charges</th> -->
                     <th>Grand Total</th>
                     <th>Order Date</th>
                     <th>Order Type</th>
@@ -33,7 +33,7 @@
                 <tr class="odd gradeX">
                   <td><%= index+1 %></td>
                   <td><%= admin_order.client.name %></td>
-                  <td><%= admin_order.shipping_charges.to_i %></td>
+                  <!-- <td><%#= admin_order.shipping_charges.to_i %></td> -->
                   <td><%= admin_order.grand_total %></td>
                   <td><%= admin_order.order_type %></td>
                   <td><%= admin_order.created_at.strftime("%B-%d-%Y") %></td>

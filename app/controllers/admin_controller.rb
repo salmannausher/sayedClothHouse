@@ -1,14 +1,17 @@
+
 class AdminController < ApplicationController
-	# before_action :authenticate_user!
-	# before_filter :is_admin?
+	before_action :authenticate_user!
+#load_and_authorize_resource
+   # before_filter :is_admin?
 		layout 'admin'
-	def is_admin?
-  	if current_user.admin?
-    	true
-  	else
-   		render :text => "You are not authorised to perform this action", :status => :unauthorized
-  	end
-  end
+		rescue_from CanCan::AccessDenied do |exception|
+    		redirect_to admin_orders_path, :alert => exception.message
+  		end
+	# def is_admin?
+ #  	if current_user.has_role? :worker
+ #  		#redirect_to admin_orders_path
+ #  	end
+ #  end
 
 	def index
 		@total_orders = Order.all.count

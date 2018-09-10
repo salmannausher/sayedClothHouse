@@ -1,20 +1,46 @@
 
 <div class="row">
   <div class="col-lg-12 header-print">
-    <h1 class="page-header">Order #<%= @admin_order.id %></h1>
+    <h1 class="page-header"><%= @admin_order.created_at.strftime("%m/%d/%Y %I:%M%p")  %></h1>
   </div>
 </div>
 <div class="row">
-  <div class="col-lg-12 sub_header">
-    <ul style="list-style: none;">
-      <li>Party Name : <%= @admin_order.client.name %></li>
-      <li>Gazana #<%= @admin_order.gazana_num %></li>
-      <li>Order Date : <%= @admin_order.created_at %></li>
-      <li>Date : <%= Date.today %></li>
-    </ul>
+  <div class="col-sm-4">
+    <table class="table table-bordered leftTable sub_header">
+        <tbody>
+            <tr>
+              <th>Date</th>
+                <td> <%= @admin_order.created_at.strftime("%m/%d/%Y") %> </td>
+            </tr>
+            <tr>
+              <th>Gazana #</th>
+                <td><%= @admin_order.gazana_num %></td>
+            </tr>
+            <tr>
+              <th>Invoice #</th>
+                <td><%= @admin_order.id %></td>
+            </tr>
+            <tr>
+              <th>Term</th>
+                <td><%= @admin_order.payment.payment_type %></td>
+            </tr>
+        </tbody>
+    </table>
   </div>
+  <div class="col-sm-4 companyName">
+    <%= @admin_order.client.name %>
+  </div>
+   <div class="col-sm-4  ">
+    <div class="Name">
+        Sayed Cloth House <br>
+        Rail Bazar<br>
+        067-3351930-31<br>
+        Burewala<br>
+    </div>
+  </div>
+  
 </div>
-<div class="row">
+<div class="row print-area">
   <div class="col-lg-12">
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -23,17 +49,16 @@
       </div>
       <div class="panel-body">
         <div class="dataTable_wrapper">
-          <table width="100%" class="table table-striped table-bordered table-hover print-area" id="dataTables-example">
+          <table width="100%" class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Than</th>
-                    <th>Item Name</th>
-                    <th>Gazana per Than</th>
-                    <th>Meters</th>
-                    <th>Price Per Meter</th>
-                    <th>Total amount</th>
-                    
+                    <th data-orderable="false">ID</th>
+                    <th data-orderable="false">Item Name</th>
+                    <th data-orderable="false">Than</th>
+                    <th data-orderable="false">Ghazana</th>
+                    <th data-orderable="false">Meters</th>
+                    <th data-orderable="false">Price/Meter</th>
+                    <th data-orderable="false">Total amount</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,8 +67,8 @@
                 <tr class="odd gradeX">
                   <td><%= index+1 %></td> 
                   <!-- <td><%#= line_item.id %></td> -->
-                  <td><%= line_item.than %></td>
                   <td><%= line_item.product.name %></td>
+                  <td><%= line_item.than %></td>
                   <td><%= line_item.gaz_per_than %></td>
                   <td><%= line_item.meter %></td>
                   <td><%= line_item.price_per_meter %></td>
@@ -60,32 +85,101 @@
     </div>
   </div>
 </div>
-
+<div class="">
+  <table class="table table-bordered rightTable grand_total_print">
+      <tbody>
+          <tr>
+            <th>Total</th>
+              <td> Rs.  <%= @admin_order.total_without_cargo %></td>
+          </tr>
+          <% unless @admin_order.shipping_charges.nil? %>
+          <tr>
+            <th>Cargo Expense</th>
+              <td>Rs. <%= @admin_order.shipping_charges.to_i %></td>
+          </tr>
+          <% end %>
+        <tr>
+            <th>Grand Total</th>
+              <td>Rs. <%= @admin_order.grand_total %></td>
+          </tr>
+      </tbody>
+  </table>
+</div>
 <div class="row">
-  <div class="col-lg-6">
+<div class="col-lg-6">
     <button class="btn btn-primary" onclick="print()" style="float: left;">Print</button>
-  </div>
-  <div class="col-lg-6 grand_total_print">
-    <span style="float: right;">
-     <strong>Total:</strong> Rs.  <%= @admin_order.total_without_cargo %>
-    </span>
-    <br>
-    <span style="float: right;">
-     <strong>Cargo Charges:</strong>  Rs. <%= @admin_order.shipping_charges.to_i %>
-    </span>
-    <br>
-    <span style="float: right;">
-     <strong>Grand Total:</strong> Rs. <%= @admin_order.grand_total %>
-    </span>
   </div>
 </div>
 <style type="text/css">
+table, tr, td {
+    border: none;
+}
+.rightTable {
+  width: 25%;
+  float: right;
+}
+.leftTable {
+  width: 100%;
+  float: left;
+}
+.companyName {
+  height: 10%;
+  border: 1px solid black;
+  border-radius: 25px;
+  font-weight: 700;
+  line-height: 50px;
+  text-align: center;
+  font-size: 30px;
+}
+.companyName:after {
+  content: "";
+  display: block;
+  padding-bottom: 5%;
+
+}
+.Name {
+  padding-top: 10px;
+  border: 1px solid black;
+  font-weight: normal;
+  line-height: 30px;
+  text-align: center;
+  font-size: 20px;
+}
+.Name:after {
+  content: "";
+  display: block;
+  padding-bottom: 5%;
+
+}
   @media print {
   body * {
     visibility: hidden;
   }
   .sub_header * {
     visibility: visible;
+  }
+  .leftTable {
+    visibility: visible;
+    width: 30%;
+  }
+  .rightTable {
+    visibility: visible;
+    width: 30%;
+  }
+  .companyName {
+    visibility: visible;
+    position: absolute;
+    width: 300px;
+    margin-left: 320px;
+    text-align: center;
+    border: 1px solid grey; 
+  }
+  .Name {
+    visibility: visible;
+    position: absolute;
+    margin-left: 650px;
+    width: 300px;
+    border: 1px solid grey; 
   }
   .grand_total_print * {
     visibility: visible;
@@ -96,14 +190,17 @@
   .print-area  * {
     visibility: visible;
   }
+  .leftTable {
+    visibility: visible;
+  }
   .header-print * {
      visibility: visible;
   }
-  .print-area {
+ /* .print-area {
     position: absolute;
     left: 0;
     top: 0;
-  }
+  }*/
 }
 </style>
 

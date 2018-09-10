@@ -1,6 +1,6 @@
 class Admin::VendorsController < AdminController
   before_action :set_admin_vendor, only: [:show, :edit, :update, :destroy]
-
+authorize_resource
   # GET /admin/vendors
   # GET /admin/vendors.json
   def index
