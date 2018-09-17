@@ -7,7 +7,6 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :stocks
   after_save :order_total,:create_stock,:create_order_payment
   
-  
 
   def order_total
     # if self.line_items.present?
@@ -46,6 +45,8 @@ class Order < ApplicationRecord
       self.payment.update(client_id: self.client.id, amount: a*(self.grand_total), payment_type: payment_type, description: order_description)
     end
   end
+
+  
 
   # def stock_limit
   #   self.line_items.each do |item|

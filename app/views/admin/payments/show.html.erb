@@ -22,6 +22,7 @@
                     <th>Payment Date</th>
                     <th>Payemnt Type</th>
                     <th>amount</th>
+                    <th>Remaining Amount</th>
                     <th>Description</th>
                 </tr>
             </thead>
@@ -41,8 +42,19 @@
                      <%= @admin_payment.amount %>
                   </td>
                   <td>
-                     <%= @admin_payment.description %>
+                     <%= @admin_payment.remaining_amount %>
                   </td>
+                  <% if @admin_payment.order.present? && @admin_payment.order.order_type == "order"  %>
+                    <td>
+                      Order#<%= @admin_payment.order.id %>
+                    </td>
+                  <% elsif @admin_payment.order.present? && @admin_payment.order.order_type == "return_invoice"%>
+                    <td>Return Order# <%= @admin_payment.order.id %></td>
+                  <% else %>
+                    <td>
+                       <%= @admin_payment.description %>
+                    </td>
+                  <% end %>
                 </tr>
             </tbody>
           </table>

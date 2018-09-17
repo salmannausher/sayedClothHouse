@@ -20,7 +20,7 @@
                <div class="form-row">
                 <div class="col-md-12 mb-12" style="margin-top: 20px;">
                   <%=line_item.label :product_id%>
-                  <%= line_item.select :product_id, Product.all.collect { | product | [product.name, product.id]} ,{:disabled => Product.out_of_stock ,include_blank: '-choose product-' } , {:class => 'form-control' , id: "select-product_#{line_item.index}", onChange: "get_price('#{line_item.index}')"} %>
+                  <%= line_item.select :product_id, Product.all.collect { | product | [product.name, product.id]} ,{include_blank: '-choose product-' } , {:class => 'form-control' , id: "select-product_#{line_item.index}", onChange: "get_price('#{line_item.index}')"} %>
                 </div>
               </div>
               <div class="form-row">
