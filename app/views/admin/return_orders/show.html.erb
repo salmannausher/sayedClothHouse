@@ -1,7 +1,8 @@
 
 <div class="row">
   <div class="col-lg-12 header-print">
-    <h1 class="page-header" style="font-size: 15px;"><%= @admin_order.created_at.strftime("%m/%d/%Y %I:%M%p")  %></h1>
+    <h1 class="page-header" style="font-size: 15px;"><%= @admin_order.created_at.strftime("%m/%d/%Y %I:%M%p")  %>
+    <span style="text-align: center;margin-left: 250px;font-size: 20px;">Return Sale</span></h1>
   </div>
 </div>
 <div class="row">
@@ -12,23 +13,29 @@
               <th>Date</th>
                 <td> <%= @admin_order.created_at.strftime("%m/%d/%Y") %> </td>
             </tr>
+            <% if @admin_order.gazana_num.present? %>
             <tr>
               <th>Gazana #</th>
                 <td><%= @admin_order.gazana_num %></td>
             </tr>
+            <% end %>
             <tr>
-              <th>Invoice #</th>
+              <th>Return Sale #</th>
                 <td><%= @admin_order.id %></td>
             </tr>
             <tr>
               <th>Term</th>
                 <td><%= @admin_order.payment.payment_type %></td>
             </tr>
+            <tr>
+              <th>To</th>
+                <td><%= @admin_order.client.name %></td>
+            </tr>
         </tbody>
     </table>
   </div>
   <div class="col-sm-4 companyName">
-    Sayed Cloth House
+    Haji Saeed Burewala
   </div>
    <div class="col-sm-4  ">
     <div class="Name">
@@ -151,6 +158,9 @@ table, tr, td {
 
 }
   @media print {
+    a[href]:after {
+    visibility: hidden;
+  }
   body * {
     visibility: hidden;
   }
