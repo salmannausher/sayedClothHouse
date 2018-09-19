@@ -7,6 +7,7 @@
 .action {
 	display: none;
 }
-button.buttonPrint {
-	visibility: : none;
-}
+.no-print, .no-print *
+    {
+        display: none !important;
+    }
