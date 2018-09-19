@@ -31,7 +31,7 @@
               <% @admin_clients.each_with_index do |admin_client,index| %>
 
                 <tr class="odd gradeX">
-                  <td><%= index+1 %></td>
+                  <td><%= admin_client.number %></td>
                   <td><%= admin_client.name %></td>
                   <td><%= admin_client.phone %></td>
                   <td><%= admin_client.address %></td>

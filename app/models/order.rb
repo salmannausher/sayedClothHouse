@@ -5,19 +5,26 @@ class Order < ApplicationRecord
   has_one :payment
   accepts_nested_attributes_for :line_items
   accepts_nested_attributes_for :stocks
+  
   after_save :order_total,:create_stock,:create_order_payment
   
-
   def order_total
     # if self.line_items.present?
       order_total = self.line_items.sum(:total_price) + self.shipping_charges.to_i
-      discount_total = order_total - order_total * self.discount/100 if self.discount.present?
+      order_total = order_total*(100-self.discount)/100 if self.discount.present?
     # else
     #   last_stock = self.stocks.last
     #   order_total = last_stock.product.sale_price*last_stock.meter
     # end
     self.update_column(:grand_total,order_total )
   end
+
+  def discount_price
+    order_total = self.line_items.sum(:total_price) + self.shipping_charges.to_i
+    discount_price = order_total - order_total*(100-self.discount)/100
+  end
+
+  
 
   def total_without_cargo
     order_total = self.line_items.sum(:total_price)

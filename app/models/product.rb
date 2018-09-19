@@ -4,11 +4,11 @@ class Product < ApplicationRecord
   belongs_to :vendor
   accepts_nested_attributes_for :stocks
   PRODUCT_NAMES = ['Small Latha','Moonmist-17','Airgon','Paragon-18','Giza-Lawn 92','Magnu-17','Sensa-17','Mustang-18','Summer Dream-18','Oak tree-18','Almas-18','Nafees cotton-18']
-  before_create :set_sale_price
+  before_save :set_sale_price
   after_create :genrate_barcode
  # validate :stock_limit
   # after_save :calculate_meters,:create_stock
-
+  #after_save 
   def profit_percentage=(new_name)
    write_attribute(:profit_percentage, new_name.to_i)
   end

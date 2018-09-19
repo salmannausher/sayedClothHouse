@@ -22,7 +22,6 @@
                     <th>Payment Date</th>
                     <th>Payemnt Type</th>
                     <th>amount</th>
-                    <th>Remaining Amount</th>
                     <th>Description</th>
                 </tr>
             </thead>
@@ -41,9 +40,7 @@
                    <td>
                      <%= @admin_payment.amount %>
                   </td>
-                  <td>
-                     <%= @admin_payment.remaining_amount %>
-                  </td>
+                  
                   <% if @admin_payment.order.present? && @admin_payment.order.order_type == "order"  %>
                     <td>
                       Order#<%= @admin_payment.order.id %>

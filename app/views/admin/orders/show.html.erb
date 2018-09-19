@@ -27,14 +27,14 @@
                 <td><%= @admin_order.payment.payment_type %></td>
             </tr>
             <tr>
-              <th>Term</th>
+              <th>To</th>
                 <td><%= @admin_order.client.name %></td>
             </tr>
         </tbody>
     </table>
   </div>
   <div class="col-sm-4 companyName">
-    Sayed Cloth House
+    Haji Saeed Burewala
   </div>
    <div class="col-sm-4  ">
     <div class="Name">
@@ -101,6 +101,12 @@
           <tr>
             <th>Cargo Expense</th>
               <td>Rs. <%= @admin_order.shipping_charges.to_i %></td>
+          </tr>
+          <% end %>
+          <% unless @admin_order.discount.nil? %>
+          <tr>
+            <th>Discount</th>
+              <td>Rs. <%= @admin_order.discount_price %></td>
           </tr>
           <% end %>
         <tr>
