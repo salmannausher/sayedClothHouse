@@ -1,7 +1,7 @@
 class LineItem < ApplicationRecord
 	belongs_to :product , optional: true
 	belongs_to :order, optional: true
-	before_create :line_total
+	before_save :line_total
 
 	def line_total 
 		self.total_price = calculate_meters*price_per_meter

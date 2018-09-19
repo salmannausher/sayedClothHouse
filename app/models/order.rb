@@ -1,13 +1,14 @@
 class Order < ApplicationRecord
+  default_scope  {order('created_at asc')}
   belongs_to :client, optional: true
   has_many :stocks
   has_many :line_items 
-  has_one :payment
+  has_one :payment, dependent: :destroy
   accepts_nested_attributes_for :line_items
   accepts_nested_attributes_for :stocks
   
   after_save :order_total,:create_stock,:create_order_payment
-  
+
   def order_total
     # if self.line_items.present?
       order_total = self.line_items.sum(:total_price) + self.shipping_charges.to_i
