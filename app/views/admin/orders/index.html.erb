@@ -35,7 +35,11 @@
                   <td><%= admin_order.client.name %></td>
                   <!-- <td><%#= admin_order.shipping_charges.to_i %></td> -->
                   <td><%= admin_order.grand_total %></td>
-                  <td><%= admin_order.created_at.strftime("%B-%d-%Y") %></td>
+                  <% if admin_order.order_date.present? %>
+                    <td><%= admin_order.order_date.strftime("%B-%d-%Y") %></td>
+                  <% else %>
+                    <td><%= admin_order.created_at.strftime("%B-%d-%Y") %></td>
+                  <% end %>
                   <td><%= admin_order.order_type %></td>
                   <td class="text-center">
                       <span>
@@ -64,3 +68,4 @@
     </div>
   </div>
 </div>
+

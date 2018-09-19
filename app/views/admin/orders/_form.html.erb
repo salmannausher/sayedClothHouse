@@ -7,14 +7,20 @@
       <div class="panel-body">
         <%= nested_form_for [:admin, @admin_order] do |f| %>
           <div class="form-row">
-            <div class="col-md-6 mb-6">
+            <div class="col-md-4 mb-4">
+                <label>Date</label>
+                <%= f.text_field :order_date ,class: 'form-control datepicker2', placeholder: 'yyyy-mm-dd '%>
+              </div>
+            <div class="col-md-4 mb-4">
               <%= f.label :client_id%>
               <%= f.select :client_id, options_for_select(Client.all.collect { | client | [client.name, client.id] }, f.object.client.try(:id)), {}, {:class => 'form-control' } %>
             </div>
-            <div class="col-md-6 mb-6">
-              <label>Cargo Charges</label>
-                  <%= f.number_field :shipping_charges ,class: 'form-control', placeholder: 'Enter Shipping Charges If Any', min: 0%>
+              <div class="col-md-4 mb-4">
+                <label>Cargo Charges</label>
+                <%= f.number_field :shipping_charges ,class: 'form-control', placeholder: 'Enter Shipping Charges If Any', min: 0%>
               </div>
+            </div>
+            <div class="form-row">
               <div class="col-md-6 mb-6" style="margin-top: 20px;">
                 <label>Gazana Number</label>
                 <%= f.number_field :gazana_num ,class: 'form-control', placeholder: 'Enter Gazana Number'%>
@@ -26,26 +32,25 @@
             </div>
             <%= f.fields_for :line_items do |line_item| %>
               <div class="form-row">
-                <div class="col-md-12 mb-12" style="margin-top: 20px;">
+                <div class="col-md-6 mb-6" style="margin-top: 20px;">
                   <%=line_item.label :product_id%>
                   <%= line_item.select :product_id, Product.all.collect { | product | [product.name, product.id]} ,{:disabled => Product.out_of_stock ,include_blank: '-choose product-' } , {:class => 'form-control' , id: "select-product_#{line_item.index}", onChange: "get_price('#{line_item.index}')"} %>
                 </div>
+                <div class="col-md-6 mb-6" style="margin-top: 20px;">
+                  <%=line_item.label :price_per_meter%>
+                  <%=line_item.text_field :price_per_meter ,class: 'form-control price_per_meter',id: "price_per_meter_"+"#{line_item.index}", placeholder: 'Enter Rate/meter', required: 'true'%>
+                </div>
               </div>
               <div class="form-row">
-                <div class="col-md-4 mb-4" style="margin-top: 20px;">
+                <div class="col-md-6 mb-4" style="margin-top: 20px;">
                   <%=line_item.label :than%>
                   <%=line_item.text_field :than ,class: 'form-control', placeholder: 'Enter Number Thans', required: 'true'%>
                 </div>
-                <div class="col-md-4 mb-4" style="margin-top: 20px;">
+                <div class="col-md-6 mb-4" style="margin-top: 20px;">
                   <%=line_item.label :gaz_per_than%>
                   <%=line_item.text_field :gaz_per_than ,class: 'form-control', placeholder: 'Enter Gaz Per Than', required: 'true'%>
                 </div>
               
-               
-                <div class="col-md-4 mb-4" style="margin-top: 20px;">
-                  <%=line_item.label :price_per_meter%>
-                  <%=line_item.text_field :price_per_meter ,class: 'form-control price_per_meter',id: "price_per_meter_"+"#{line_item.index}", placeholder: 'Enter Rate/meter', required: 'true'%>
-                </div>
               </div>
               <div class="form-row">
                 <div class="col-md-12 text-center" style="margin-top: 20px; clear: both;">
@@ -66,6 +71,8 @@
   </div>    
 </div>
 <script type="text/javascript">
+  $('.datepicker2').datepicker({ dateFormat: 'yy-mm-dd' })
+
   function get_price(index){
     productId = $('#select-product_'+index).val()
     $.ajax({
@@ -76,3 +83,4 @@
     })
   }
 </script>
+
