@@ -7,7 +7,24 @@
 .action {
 	display: none;
 }
+.panel .panel-default{
+  visibility: hidden;
+}
+.dataTable_wrapper {
+  visibility: visible;
+}
 .no-print, .no-print *
     {
         display: none !important;
     }
+
+table.table-bordered{
+    border:2px solid black;
+  }
+table.table-bordered thead  tr  th{
+    border:2px solid black;
+}
+/*table.table-bordered > tbody > tr > td{
+    border:2px solid black;
+}*/
+
