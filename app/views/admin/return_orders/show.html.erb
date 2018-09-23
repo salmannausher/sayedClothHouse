@@ -5,16 +5,17 @@
     <span style="text-align: center;margin-left: 250px;font-size: 20px;">Return Sale</span></h1>
   </div>
 </div>
-<div class="row">
-  <div class="col-sm-4">
+<div class="companyName">
+    Haji Saeed Burewala
+  </div>
+<div class="row" style="margin-top: 10px;">
+  <div class="col-sm-6">
     <table class="table table-bordered leftTable sub_header">
         <tbody>
             <tr>
               <th>Date</th>
                 <td> <%= @admin_order.created_at.strftime("%m/%d/%Y") %> </td>
-            </tr>
             <% if @admin_order.gazana_num.present? %>
-            <tr>
               <th>Gazana #</th>
                 <td><%= @admin_order.gazana_num %></td>
             </tr>
@@ -34,10 +35,8 @@
         </tbody>
     </table>
   </div>
-  <div class="col-sm-4 companyName">
-    Haji Saeed Burewala
-  </div>
-   <div class="col-sm-4  ">
+  
+   <div class="col-sm-6  ">
     <div class="Name">
        <%= @admin_order.client.name %> <br>
         <%= @admin_order.client.address %><br>
@@ -125,10 +124,11 @@ table, tr, td {
   float: right;
 }
 .leftTable {
-  width: 100%;
+  width: 80%;
   float: left;
 }
 .companyName {
+  width: 50%;
   height: 10%;
   border: 1px solid black;
   border-radius: 25px;
@@ -169,7 +169,7 @@ table, tr, td {
   }
   .leftTable {
     visibility: visible;
-    width: 30%;
+    width: 50%;
   }
   .rightTable {
     visibility: visible;
@@ -177,18 +177,20 @@ table, tr, td {
   }
   .companyName {
     visibility: visible;
-    position: absolute;
+   /* position: absolute;
     width: 300px;
     margin-left: 320px;
-    text-align: center;
-    border: 1px solid grey; 
+    text-align: center;*/
+    border: 1px solid black; 
+    margin-left: 300px;
   }
   .Name {
     visibility: visible;
     position: absolute;
-    margin-left: 650px;
-    width: 300px;
-    border: 1px solid grey; 
+    margin-left: 500px;
+    width: 400px;
+    border: 1px solid black; 
+    height: 190px;
   }
   .grand_total_print * {
     visibility: visible;

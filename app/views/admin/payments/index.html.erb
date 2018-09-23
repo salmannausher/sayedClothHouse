@@ -38,7 +38,6 @@
                     <th data-orderable="false">Payment Date</th>
                     <th data-orderable="false">Credit</th>
                     <th data-orderable="false">Debit</th>
-                    <th data-orderable="false">amount</th>
                     <th data-orderable="false">Remaining amount</th>
                     <th data-orderable="false">Description</th>
                     <th class="action">Action</th>
@@ -55,18 +54,16 @@
                   <td><%= admin_payment.created_at.strftime("%B-%d-%Y") %></td>
 
                   <td>
-                     <% if admin_payment.payment_type == ('debit' || 'Debit') %>
-                      <%= admin_payment.payment_type %>
+                     <% if admin_payment.payment_type == 'debit' ||  admin_payment.payment_type == 'Debit' %>
+                      <%= admin_payment.amount %>
                      <% end %>
                   </td>
                   <td>
-                    <% if admin_payment.payment_type == ('credit' ||'Credit') %>
-                      <%= admin_payment.payment_type %>
+                    <% if admin_payment.payment_type == 'credit' || admin_payment.payment_type == 'Credit' %>
+                      <%= admin_payment.amount %>
                     <% end %>
                   </td>
-                   <td>
-                     <%= admin_payment.amount %>
-                  </td>
+                  
                   <td>
                      <%= admin_payment.remaining_amount %>
                   </td>
@@ -105,14 +102,39 @@
           </tr>
       </tbody>
   </table>
+  <div class="in-words-size">
+    <span  class="in-words">Amount in Words: </span>
+    <span class="in-words-underline"><%= @admin_client.payments.sum(:amount).to_words.capitalize %></span>
+  </div>
 </div>
+
 <div class="row">
-<div class="col-lg-6 no-print">
+<div class="col-lg-6 no-print" id="wrapper">
     <button class="btn btn-primary" onclick="print()" style="float: left;">Print</button>
   </div>
 </div>
 
 <style type="text/css">
+.wrapper {
+  width:100%; height:400px; border:1px solid black;
+    button {
+      height:20px; 
+      position:relative;
+      margin: -20px -50px;
+      width:100px; 
+      top:50%; 
+      left:50%;
+    }
+}
+.in-words-size {
+  font-size: 18px;
+}
+.in-words {
+  font-weight: 700;
+}
+.in-words-underline {
+  text-decoration: underline;
+}
 .rightTable {
   width: 40%;
   float: right;
