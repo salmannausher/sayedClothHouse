@@ -19,8 +19,8 @@
             <thead>
                 <tr>
                     <th>Payment#</th>
-                    <th>Payment Date</th>
-                    <th>Payemnt Type</th>
+                    <th>Date</th>
+                    <th>Type</th>
                     <th>amount</th>
                     <th>Description</th>
                 </tr>
@@ -32,7 +32,7 @@
                   <!-- <td><%#= index+1 %></td> -->
                   <td><%= @admin_payment.id %></td>
                   
-                  <td><%= @admin_payment.created_at.strftime("%B-%d-%Y") %></td>
+                  <td><%= @admin_payment.created_at.strftime("%m/%d/%Y") %></td>
 
                   <td>
                      <%= @admin_payment.payment_type %>
@@ -69,7 +69,7 @@
     </div>
   </div>
 </div>
-<div class="row no-print">
+<div class="row">
   <div class="col-lg-6">
     <button class="btn btn-primary" onclick="print()" style="float: left;">Print</button>
   </div>

@@ -35,11 +35,11 @@
             <thead>
                 <tr>
                     <th data-orderable="false">Sr#</th>
-                    <th data-orderable="false">Payment Date</th>
-                    <th data-orderable="false">Debit</th>
-                    <th data-orderable="false">Credit</th>
-                    <th data-orderable="false">Remaining amount</th>
+                    <th data-orderable="false">Date</th>
                     <th data-orderable="false">Description</th>
+                    <th data-orderable="false">Credit</th>
+                    <th data-orderable="false">Debit</th>
+                    <th data-orderable="false">Amount</th>
                     <th class="action">Action</th>
                 </tr>
             </thead>
@@ -51,22 +51,7 @@
                   <!-- <td><%#= index+1 %></td> -->
                   <td><%= index+1 %></td>
                   
-                  <td><%= admin_payment.created_at.strftime("%B-%d-%Y") %></td>
-
-                  <td>
-                     <% if admin_payment.payment_type == 'debit' ||  admin_payment.payment_type == 'Debit' %>
-                      <%= admin_payment.amount %>
-                     <% end %>
-                  </td>
-                  <td>
-                    <% if admin_payment.payment_type == 'credit' || admin_payment.payment_type == 'Credit' %>
-                      <%= admin_payment.amount %>
-                    <% end %>
-                  </td>
-                  
-                  <td>
-                     <%= admin_payment.remaining_amount %>
-                  </td>
+                  <td><%= admin_payment.created_at.strftime("%m/%d/%Y") %></td>
                   <% if admin_payment.order.present? && admin_payment.order.order_type == "order"  %>
                     <td>
                       Order#<%= admin_payment.order.id %>
@@ -80,6 +65,21 @@
                   <%# else %>
                   <!-- <td>Payment added manually</td> -->
                   <% end %>
+                  <td>
+                    <% if admin_payment.payment_type == 'credit' || admin_payment.payment_type == 'Credit' %>
+                      <%= admin_payment.amount %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <% if admin_payment.payment_type == 'debit' ||  admin_payment.payment_type == 'Debit' %>
+                      <%= admin_payment.amount %>
+                    <% end %>
+                  </td>
+                  
+                  <td>
+                     <%= admin_payment.remaining_amount %>
+                  </td>
+                  
                   	<td class="actionSymbol"><%= link_to '',  admin_payment_path(admin_payment), method: :delete, data: { confirm: 'Are you sure?' } ,class: "delete fa fa-trash icon_link with-tip no-text" , title: "delete" %>
 									
                    <%= link_to '', admin_payment_path(admin_payment) ,class: "edit fa fa-eye icon_link with-tip no-text", title: "order detail"%></td>&nbsp; &nbsp;
