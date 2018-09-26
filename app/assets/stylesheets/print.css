@@ -33,14 +33,5 @@ table.leftTable thead  tr  th{
     {
         display: none !important;
     }
-body {
-  font-size: 20px;
-}
-/*table, tr, td {
-    font-size: 18px;
-}*/
 
-/*table.table-bordered > tbody > tr > td{
-    border:2px solid black;
-}*/
 

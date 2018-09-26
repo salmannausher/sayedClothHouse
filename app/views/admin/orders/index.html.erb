@@ -23,7 +23,7 @@
                     <th>Grand Total</th>
                     <th>Order Date</th>
                     <th>Order Type</th>
-                    <th class="text-center">Actions</th>
+                    <th class="action text-center">Actions</th>
                     
                 </tr>
             </thead>
@@ -41,7 +41,7 @@
                     <td><%= admin_order.created_at.strftime("%B-%d-%Y") %></td>
                   <% end %>
                   <td><%= admin_order.order_type %></td>
-                  <td class="text-center">
+                  <td class="text-center action">
                       <span>
                       <% if admin_order.order_type == 'return_invoice' %>
                         <%= link_to '', admin_return_order_path(admin_order) ,class: "edit fa fa-eye icon_link with-tip no-text", title: "order detail"%>&nbsp; &nbsp;
