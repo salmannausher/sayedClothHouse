@@ -34,4 +34,8 @@ table.leftTable thead  tr  th{
         display: none !important;
     }
 
+.table .table-bordered {
+  font-size: 22px;
+}
+
 

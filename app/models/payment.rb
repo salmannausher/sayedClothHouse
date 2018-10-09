@@ -3,6 +3,7 @@ class Payment < ApplicationRecord
 	belongs_to :client, optional: true
 	belongs_to :order, optional: true
 	after_create :calculate_remaining_amount
+  after_save :add_order_date
   after_update :change_remaing_amount
   after_destroy :change_remaing_amount
   def calculate_remaining_amount
@@ -18,6 +19,12 @@ class Payment < ApplicationRecord
 	  # else
 	  # 	remaining = 
 
+  end
+  def add_order_date
+    byebug
+    if self.order.order_date.present?
+      self.update_column(:created_at, self.order.order_date)
+    end
   end
     def change_remaing_amount
     payments = self.client.payments
