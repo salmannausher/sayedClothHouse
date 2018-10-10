@@ -21,7 +21,6 @@ class Payment < ApplicationRecord
 
   end
   def add_order_date
-    byebug
     if self.order.order_date.present?
       self.update_column(:created_at, self.order.order_date)
     end
