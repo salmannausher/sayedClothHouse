@@ -1,5 +1,5 @@
 class Payment < ApplicationRecord
-	default_scope  {order('created_at asc')}
+	default_scope  {order('order_id asc')}
 	belongs_to :client, optional: true
 	belongs_to :order, optional: true
 	after_create :calculate_remaining_amount
