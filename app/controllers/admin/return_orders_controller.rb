@@ -45,7 +45,7 @@ class Admin::ReturnOrdersController < AdminController
     end
 
   def return_order_params
-     params.require(:order).permit(:client_id,:shipping_charges,:order_type, line_items_attributes: [:id, :quantity, :size, :than, :item_name, :gaz_per_than, :meter, :price_per_meter, :total_price, :product_id])
+     params.require(:order).permit(:client_id,:shipping_charges,:order_type,:order_date, line_items_attributes: [:id, :quantity, :size, :than, :item_name, :gaz_per_than, :meter, :price_per_meter, :total_price, :product_id])
   end
 
 end

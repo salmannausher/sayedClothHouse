@@ -14,7 +14,7 @@
         <tbody>
             <tr>
               <th>Date</th>
-                <td> <%= @admin_order.created_at.strftime("%m/%d/%Y") %> </td>
+                <td> <%= @admin_order.order_date.present? ? @admin_order.order_date.strftime("%m/%d/%Y") : @admin_order.created_at.strftime("%m/%d/%Y") %> </td>
             <% if @admin_order.gazana_num.present? %>
               <th>Gazana #</th>
                 <td><%= @admin_order.gazana_num %></td>

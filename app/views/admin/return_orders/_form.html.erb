@@ -7,11 +7,15 @@
       <div class="panel-body">
         <%= nested_form_for [:admin, @admin_order], :url => @admin_order.new_record? ? admin_return_orders_path : admin_return_order_path do |f| %>
           <div class="form-row">
-            <div class="col-md-6 mb-3">
+             <div class="col-md-4 mb-3">
+              <label>Date</label>
+                  <%= f.text_field :order_date ,class: 'form-control datepicker2', placeholder: 'yyyy-mm-dd '%>
+              </div>
+            <div class="col-md-4 mb-3">
               <%= f.label :client_id%>
               <%= f.select :client_id, options_for_select(Client.all.collect { | client | [client.name, client.id] }, f.object.client.try(:id)), {}, {:class => 'form-control' } %>
             </div>
-               <div class="col-md-6 mb-3">
+               <div class="col-md-4 mb-3">
               <label>Gazana Number</label>
                   <%= f.number_field :gazana_num ,class: 'form-control', placeholder: 'Enter Gazana Number'%>
               </div>
@@ -58,6 +62,7 @@
   </div>    
 </div>
 <script type="text/javascript">
+   $('.datepicker2').datepicker({ dateFormat: 'yy-mm-dd' })
   function get_price(index){
     productId = $('#select-product_'+index).val()
     $.ajax({
