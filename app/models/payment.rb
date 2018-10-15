@@ -15,14 +15,17 @@ class Payment < ApplicationRecord
   	#byebug
   	 # if self.order.first?
 	  # 	remaining = self.order.grand_total
+    puts remaining_amount
 	  self.update_column(:remaining_amount,remaining_amount )
 	  # else
 	  # 	remaining = 
 
   end
   def add_order_date
-    if self.order.order_date.present?
-      self.update_column(:created_at, self.order.order_date)
+    if self.order.present?
+      if self.order.order_date.present?
+        self.update_column(:created_at, self.order.order_date)
+      end
     end
   end
     def change_remaing_amount
