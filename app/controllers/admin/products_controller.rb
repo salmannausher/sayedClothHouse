@@ -85,6 +85,6 @@ class Admin::ProductsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_product_params
-       params.require(:product).permit(:name,:vendor_id,:than,:gazan_per_than, :rate, :profit_percentage, :sale_price,stocks_attributes: [:than,:gazana_per_than,:meter,:product_id])
+       params.require(:product).permit(:name,:vendor_id,:than,:gazan_per_than, :rate, :profit_percentage,:product_type, :sale_price,stocks_attributes: [:than,:gazana_per_than,:meter,:product_id])
     end
 end

@@ -15,6 +15,7 @@ gem "nested_form"
 gem 'ransack'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
+gem "paranoia", "~> 2.2"
 gem 'barby'
 gem 'cancancan', '~> 2.0'
 # Use SCSS for stylesheets

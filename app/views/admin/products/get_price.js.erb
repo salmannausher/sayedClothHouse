@@ -1,1 +1,7 @@
 $('#price_per_meter_'+<%=params[:index]%>).val('<%=@admin_product.sale_price%>')
+<% if @admin_product.product_type == 1 %>
+	$('.than').html('Qunatity')
+	$('.price_per_meter_label').html('Price per item')
+	$('.gaz_per_than').css({"visibility":"hidden"});
+	$('#gaz_per_than_'+<%=params[:index]%>).val('1')
+<% end %>

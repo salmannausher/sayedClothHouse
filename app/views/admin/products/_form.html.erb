@@ -16,7 +16,13 @@
               <div class="form-group">
               <%=f.label :vendor_id%>
               
-              <%= f.select :vendor_id, options_for_select(Vendor.all.collect { | vendor | [vendor.name, vendor.id] }, f.object.vendor.try(:id)), {}, {:class => 'form-control' } %>
+              <%= f.select :vendor_id, options_for_select(Vendor.all.collect { | vendor | [vendor.name, vendor.id] }, f.object.vendor.try(:id)),{include_blank: '-choose vendor-'}, {:class => 'form-control' } %>
+              </div>
+              <div class="form-group">
+              <%=f.label :product_type%>
+              <%= f.select :product_type, options_for_select( Product::PRODUCT_TYPES, :selected => f.object.product_type ) , {include_blank: '-choose product type-'}, {:class => 'form-control' } %>
+              
+              <%#= f.select(:product_type, [['Accessories', 1], ['Whole sale', 2]], {}, {:class => 'form-control' }) %>
               </div>
               <%#= f.fields_for :stocks do |stock_item| %>
               <!--   <div class="form-group">

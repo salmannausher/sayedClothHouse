@@ -37,18 +37,18 @@
                   <%= line_item.select :product_id, Product.all.collect { | product | [product.name, product.id]} ,{:disabled => Product.out_of_stock ,include_blank: '-choose product-' } , {:class => 'form-control' , id: "select-product_#{line_item.index}", onChange: "get_price('#{line_item.index}')"} %>
                 </div>
                 <div class="col-md-6 mb-6" style="margin-top: 20px;">
-                  <%=line_item.label :price_per_meter%>
+                  <%=line_item.label :price_per_meter, class: 'price_per_meter_label' %>
                   <%=line_item.text_field :price_per_meter ,class: 'form-control price_per_meter',id: "price_per_meter_"+"#{line_item.index}", placeholder: 'Enter Rate/meter', required: 'true'%>
                 </div>
               </div>
               <div class="form-row">
                 <div class="col-md-6 mb-4" style="margin-top: 20px;">
-                  <%=line_item.label :than%>
+                  <%=line_item.label :than, class: 'than'%>
                   <%=line_item.text_field :than ,class: 'form-control', placeholder: 'Enter Number Thans', required: 'true'%>
                 </div>
-                <div class="col-md-6 mb-4" style="margin-top: 20px;">
-                  <%=line_item.label :gaz_per_than%>
-                  <%=line_item.text_field :gaz_per_than ,class: 'form-control', placeholder: 'Enter Gaz Per Than', required: 'true'%>
+                <div class="col-md-6 mb-4 gaz_per_than" style="margin-top: 20px;">
+                  <%=line_item.label :gaz_per_than %>
+                  <%=line_item.text_field :gaz_per_than ,class: 'form-control',id: "gaz_per_than_#{line_item.index}", placeholder: 'Enter Gaz Per Than', required: 'true'%>
                 </div>
               
               </div>

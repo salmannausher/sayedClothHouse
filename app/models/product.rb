@@ -1,4 +1,7 @@
 class Product < ApplicationRecord
+  # enum types:{ towel: 0, suit: 1 }
+  acts_as_paranoid
+  PRODUCT_TYPES = [['Accessories', "1"]]
   has_many :line_items
   has_many :stocks
   belongs_to :vendor
