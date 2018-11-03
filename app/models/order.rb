@@ -20,6 +20,14 @@ class Order < ApplicationRecord
     self.update_column(:grand_total,order_total )
   end
 
+  def payment
+  Payment.unscoped { super }
+end
+
+  def client
+    Client.unscoped { super }
+  end
+
   def discount_price
     order_total = self.line_items.sum(:total_price) + self.shipping_charges.to_i
     discount_price = order_total - order_total*(100-self.discount)/100

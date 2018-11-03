@@ -1,4 +1,5 @@
 class Payment < ApplicationRecord
+  acts_as_paranoid
 	default_scope  {order('order_id asc')}
 	belongs_to :client, optional: true
 	belongs_to :order, optional: true
@@ -20,6 +21,10 @@ class Payment < ApplicationRecord
 	  # else
 	  # 	remaining = 
 
+  end
+        
+  def client
+    Client.with_deleted.find(client_id)
   end
   def add_order_date
     if self.order.present?

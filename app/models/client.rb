@@ -1,4 +1,5 @@
 class Client < ApplicationRecord
+  acts_as_paranoid
 	has_many :orders
 	has_many :products
 	has_many :payments
