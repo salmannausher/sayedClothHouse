@@ -32,14 +32,14 @@
             </tr>
             <tr>
               <th>To</th>
-                <td><%= @admin_order.client.name %></td>
+                <td><%= @admin_order.client.try(:name) %></td>
             </tr>
         </tbody>
     </table>
   </div>
    <div class="col-sm-6  ">
     <div class="Name">
-       <%= @admin_order.client.name %> <br>
+       <%= @admin_order.client.try(:name) %> <br>
         <%= @admin_order.client.address %><br>
         <%= @admin_order.client.phone %><br>
     </div>
