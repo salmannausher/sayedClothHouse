@@ -40,8 +40,8 @@
    <div class="col-sm-6  ">
     <div class="Name">
        <%= @admin_order.client.try(:name) %> <br>
-        <%= @admin_order.client.address %><br>
-        <%= @admin_order.client.phone %><br>
+        <%= @admin_order.client.try(:address) %><br>
+        <%= @admin_order.client.try(:phone) %><br>
     </div>
   </div>
   
