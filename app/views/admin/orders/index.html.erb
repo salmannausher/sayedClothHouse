@@ -32,7 +32,7 @@
               <% @admin_orders.each_with_index do |admin_order,index| %>
                 <tr class="odd gradeX">
                   <td><%= index+1 %></td>
-                  <td><%= admin_order.client.name %></td>
+                  <td><%= admin_order.client.try(:name) %></td>
                   <!-- <td><%#= admin_order.shipping_charges.to_i %></td> -->
                   <td><%= admin_order.grand_total %></td>
                   <% if admin_order.order_date.present? %>
