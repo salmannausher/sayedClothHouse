@@ -29,7 +29,7 @@ class Product < ApplicationRecord
   end
 
   def vendor
-    Vnedor.with_deleted.find(vendor_id)
+    Vendor.with_deleted.find(vendor_id)
   end
 
   def set_sale_price
