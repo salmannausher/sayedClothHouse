@@ -28,9 +28,9 @@ class Product < ApplicationRecord
     end
   end
 
-  def vendor
-    Vendor.with_deleted.find(vendor_id)
-  end
+  # def vendor
+  #   Vendor.with_deleted.find(vendor_id)
+  # end
 
   def set_sale_price
     self.sale_price = product_sale_price
