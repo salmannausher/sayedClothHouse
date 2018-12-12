@@ -20,14 +20,10 @@
       <%= hidden_field_tag :id, @admin_client.id %>
   </div>  
 <% end %>
-<div class="margin20"></div>
+<!-- <div class="margin20"></div> -->
 <div class="row prinTable">
   <div class="col-lg-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <%= @admin_client.name %> Payments
-        <%#= link_to '<i class="fa fa-plus"></i> Add New client'.html_safe, new_admin_product_path, class: "btn btn-default pull-right add-btn" %>
-      </div>
+      
       <div class="panel-body">
         
         <div class="dataTable_wrapper">
@@ -90,7 +86,6 @@
           </table>
         </div>
       </div>
-    </div>
   </div>
 </div>
 <div class="">
@@ -149,14 +144,7 @@
 .margin20 {
   margin-bottom: 20px;
 }
-@media print {
-  body * {
-    visibility: visible;
-  }
-  .search {
-    visibility: hidden;
-  }
-}
+
 </style>
 <script type="text/javascript">
   $('.datepicker2').datepicker({ dateFormat: 'yy-mm-dd' })

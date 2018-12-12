@@ -6,7 +6,7 @@ body {
 }*/
 
 table.table-bordered{
-    border:2px solid black;
+    border:1.5px solid black;
   }
 table.table-bordered thead  tr  th{
     border:2px solid black;
@@ -34,8 +34,8 @@ table.leftTable thead  tr  th{
         display: none !important;
     }
 
-.table .table-bordered {
+/*table .table-bordered {
   font-size: 22px;
-}
+}*/
 
 
