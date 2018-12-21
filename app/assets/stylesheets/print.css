@@ -33,6 +33,20 @@ table.leftTable thead  tr  th{
     {
         display: none !important;
     }
+.form-control {
+  display: none !important;
+}
+
+.paginate_button {
+  display: none !important;
+}
+.dataTables_info {
+  display: none !important;
+}
+label {
+  display: none !important;
+}
+
 
 /*table .table-bordered {
   font-size: 22px;

@@ -3,21 +3,22 @@ class Payment < ApplicationRecord
 	default_scope  {order('order_id asc')}
 	belongs_to :client, optional: true
 	belongs_to :order, optional: true
-	after_create :calculate_remaining_amount
+	before_create :calculate_remaining_amount
   after_save :add_order_date
   after_update :change_remaing_amount
   after_destroy :change_remaing_amount
   def calculate_remaining_amount
-  	if self.client.payments.count == 1
+  	if self.client.payments.count == 0
   		remaining_amount = self.amount
   	else
-  		remaining_amount = self.amount+self.client.payments.offset(1).last.remaining_amount.to_f
+      # byebug
+  		remaining_amount = self.amount+self.client.payments.unscope(:order).last.remaining_amount.to_f
   	end
-  	#byebug
   	 # if self.order.first?
 	  # 	remaining = self.order.grand_total
     puts remaining_amount
-	  self.update_column(:remaining_amount,remaining_amount )
+	  # self.update_column(:remaining_amount,remaining_amount )
+    self.remaining_amount = remaining_amount
 	  # else
 	  # 	remaining = 
 
